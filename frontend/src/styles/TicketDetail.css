@@ -1,0 +1,51 @@
+.ticket-detail-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.ticket-detail-card {
+  background-color: #2f2f2f;
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+.detail-header {
+  border-bottom: 1px solid #444;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.detail-meta {
+  display: flex;
+  justify-content: space-between;
+  color: #aaa;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.detail-description {
+  white-space: pre-wrap; /* Preserves line breaks in the description */
+}
+
+.comments-section {
+  margin-top: 2rem;
+}
+
+.comment {
+  background-color: #242424;
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  border-left: 3px solid #555;
+}
+
+.comment-author {
+  font-weight: bold;
+  color: #ccc;
+}
+
+.comment-meta {
+  font-size: 0.8rem;
+  color: #888;
+  margin-left: 0.5rem;
+}
