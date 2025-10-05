@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useAuthStore } from '../store/authStore';
 
 const api = axios.create({
-  baseURL: 'http://localhost:3001/api',
+  baseURL: 'https://helpdesk-mini-aneq.onrender.com/',
 });
 
 api.interceptors.request.use(
