@@ -1,7 +1,7 @@
 const { client } = require('../config/redisClient');
 
 const RATE_LIMIT_WINDOW_SECONDS = 60;
-const MAX_REQUESTS_PER_WINDOW = 60;
+const MAX_REQUESTS_PER_WINDOW = 5;
 
 const rateLimiter = async (req, res, next) => {
   if (!req.user) {
