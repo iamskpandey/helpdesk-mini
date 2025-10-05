@@ -27,9 +27,13 @@ export const loginUser = async (credentials) => {
   }
 };
 
-export const getTickets = async () => {
+export const getTickets = async (searchTerm = '') => {
   try {
-    const response = await api.get('/tickets');
+    const params = {};
+    if (searchTerm) {
+      params.search = searchTerm;
+    }
+    const response = await api.get('/tickets', { params });
     return response.data;
   } catch (error) {
     throw error.response.data;

@@ -8,22 +8,27 @@ function TicketsListPage() {
   const [tickets, setTickets] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const fetchTickets = async (search = '') => {
+    try {
+      setIsLoading(true);
+      const data = await getTickets(search);
+      setTickets(data.items);
+    } catch (err) {
+      setError(err.error?.message || 'Failed to fetch tickets.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchTickets = async () => {
-      try {
-        setIsLoading(true);
-        const data = await getTickets();
-        setTickets(data.items);
-      } catch (err) {
-        setError(err.error?.message || 'Failed to fetch tickets.');
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
     fetchTickets();
   }, []);
+
+  const handleSearch = () => {
+    fetchTickets(searchTerm);
+  };
 
   const renderContent = () => {
     if (isLoading) {
@@ -33,7 +38,11 @@ function TicketsListPage() {
       return <p style={{ color: '#ff6b6b' }}>Error: {error}</p>;
     }
     if (tickets.length === 0) {
-      return <p>No tickets found. Create one!</p>;
+      return (
+        <p>
+          {searchTerm ? 'No tickets found.' : 'No tickets found. Create one!'}
+        </p>
+      );
     }
     return (
       <div>
@@ -52,6 +61,20 @@ function TicketsListPage() {
           Create New Ticket
         </Link>
       </div>
+
+      <div className="search-box">
+        <input
+          type="text"
+          placeholder="Search tickets..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="search-input"
+        />
+        <button onClick={handleSearch} className="search-button">
+          Search
+        </button>
+      </div>
+
       {renderContent()}
     </div>
   );
